@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery, Card, CardContent } from '@mui/material';
 import {
     List,
     SimpleList,
@@ -27,7 +27,7 @@ const postFilters = [
 export const PostList = () => {
 
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
-    
+
     return (
 
         <List filters={postFilters}>
@@ -39,14 +39,18 @@ export const PostList = () => {
                 />
             ) : (
 
-                <Datagrid rowClick="edit">
-                    <TextField source="id" />
-                    {/* list the data of each user from posts using reference userid  */}
-                    <ReferenceField source="userId" reference="users" />
-                    <TextField source="title" />
-                    <EditButton />
-                </Datagrid>
-
+                <Card sx={{ mr: 1, mt:2,ml:2,mb:2,width:1050 }}>
+                    <CardContent>
+                        <Datagrid rowClick="edit">                           
+                            <TextField source="id" />
+                            {/* list the data of each user from posts using reference userid  */}
+                            <ReferenceField label="User" source="userId" reference="users" />
+                            <TextField source="title" />
+                            <TextField source="body"/>
+                            <EditButton />
+                        </Datagrid>
+                    </CardContent>
+                </Card>
             )}
         </List>
 
